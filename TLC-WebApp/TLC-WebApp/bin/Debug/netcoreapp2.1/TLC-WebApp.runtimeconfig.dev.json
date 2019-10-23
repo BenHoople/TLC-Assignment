@@ -1,0 +1,9 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Inspiron 15 5000\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Inspiron 15 5000\\.nuget\\packages",
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ]
+  }
+}
