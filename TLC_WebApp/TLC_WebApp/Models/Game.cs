@@ -7,10 +7,10 @@ namespace TLC_WebApp.Models
 {
     public class Game
     {
-        private char[] gameBoard = new char[9];
-        private char x = 'X', o = 'O', fill = '-';
+        private String[] gameBoard = new String[9];
+        private String x = "X", o = "O", fill = "-";
         private byte choice;
-        private char turn;
+        private String turn;
         //private Scanner scanner = new Scanner(System.in);
         private bool playable;
 
@@ -40,7 +40,7 @@ namespace TLC_WebApp.Models
             return 10;
         }
 
-        private char[] fillBoard()
+        private String[] fillBoard()
         {
             int i = 0;
             for (int x = 0; x < this.gameBoard.Length; x++)
