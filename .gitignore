@@ -2,3 +2,7 @@
 TLC_WebApp/.vs/TLC_WebApp/v15/Server
 *.ide-shm
 *.ide-shm
+TLC_WebApp/.vs/TLC_WebApp/v15/Server/sqlite3/storage.ide-shm
+TLC_WebApp/.vs/TLC_WebApp/v15/Server/sqlite3/storage.ide-wal
+*.ide-shm
+*.ide-wal
