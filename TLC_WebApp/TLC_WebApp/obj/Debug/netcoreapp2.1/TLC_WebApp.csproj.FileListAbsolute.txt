@@ -33,3 +33,9 @@ C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\TLC_WebApp.dll
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\TLC_WebApp.pdb
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\TLC_WebApp.csproj.CopyComplete
+C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\Razor\Views\GameBoards\Create.g.cshtml.cs
+C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\Razor\Views\GameBoards\Delete.g.cshtml.cs
+C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\Razor\Views\GameBoards\Details.g.cshtml.cs
+C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\Razor\Views\GameBoards\Edit.g.cshtml.cs
+C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\Razor\Views\GameBoards\Index.g.cshtml.cs
+C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\Razor\Views\GameBoards\Game.g.cshtml.cs

@@ -7,16 +7,15 @@ namespace TLC_WebApp.Models
 {
     public class Game
     {
-        private String[] gameBoard = new String[9];
-        private String x = "X", o = "O", fill = "-";
-        private byte choice;
-        private String turn;
-        //private Scanner scanner = new Scanner(System.in);
-        private bool playable;
+        public String[] gameBoard = new String[9];
+        public String x = "X", o = "O", fill = "-";
+        public byte choice;
+        public String turn;
+        public bool playable;
+        public GameBoard gb = new GameBoard();
 
         public Game()
         {
-            this.gameBoard = fillBoard();
             this.turn = x;
             this.playable = true;
         }
@@ -35,29 +34,17 @@ namespace TLC_WebApp.Models
         }
         private byte takeInput()
         {
-
-            //return scanner.nextByte();
-            return 10;
-        }
-
-        private String[] fillBoard()
-        {
-            int i = 0;
-            for (int x = 0; x < this.gameBoard.Length; x++)
-            {
-                this.gameBoard[x] = this.fill;
-                i++;
-                if (i == 3)
-                {
-                    i = 0;
-                }
-            }
-            return gameBoard;
+            return 1;
         }
 
         public bool isPlayable()
         {
             return playable;
+        }
+
+        public bool checkBoard(String[] DBGameBoard)
+        {
+            return gameBoard.Equals(DBGameBoard);
         }
     }
 }
