@@ -63,7 +63,7 @@ using TLC_WebApp.Models;
             WriteLiteral("\r\n<h2>Game</h2>\r\n\r\n<p>\r\n    ");
             EndContext();
             BeginContext(218, 37, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "60730be358da4ba09b45615973b22aad", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d416d4e5c9a43bc828cd96dd4056e76", async() => {
                 BeginContext(241, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
