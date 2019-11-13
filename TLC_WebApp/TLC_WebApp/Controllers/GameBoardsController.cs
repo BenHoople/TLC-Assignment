@@ -25,7 +25,7 @@ namespace TLC_WebApp.Controllers
             Game game = new Game();
             return View(game);
         }
-        public void play(Game game, String position)
+        public void Play(Game game, String position)
         {
             switch (position)
             {

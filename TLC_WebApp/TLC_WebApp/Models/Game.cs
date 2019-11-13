@@ -21,8 +21,6 @@ namespace TLC_WebApp.Models
         }
         public void move()
         {
-            this.choice = takeInput();
-            this.gameBoard[choice - 1] = this.turn;
             if (this.turn == x)
             {
                 this.turn = o;
