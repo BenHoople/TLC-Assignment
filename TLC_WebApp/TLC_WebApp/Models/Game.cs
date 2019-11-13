@@ -7,20 +7,23 @@ namespace TLC_WebApp.Models
 {
     public class Game
     {
-        public String[] gameBoard = new String[9];
-        public String x = "X", o = "O", fill = "-";
-        public byte choice;
-        public String turn;
-        public bool playable;
-        public GameBoard gb = new GameBoard();
+        private char[] gameBoard = new char[9];
+        private char x = 'X', o = 'O', fill = '-';
+        private byte choice;
+        private char turn;
+        //private Scanner scanner = new Scanner(System.in);
+        private bool playable;
 
         public Game()
         {
+            this.gameBoard = fillBoard();
             this.turn = x;
             this.playable = true;
         }
         public void move()
         {
+            this.choice = takeInput();
+            this.gameBoard[choice - 1] = this.turn;
             if (this.turn == x)
             {
                 this.turn = o;
@@ -32,17 +35,29 @@ namespace TLC_WebApp.Models
         }
         private byte takeInput()
         {
-            return 1;
+
+            //return scanner.nextByte();
+            return 10;
+        }
+
+        private char[] fillBoard()
+        {
+            int i = 0;
+            for (int x = 0; x < this.gameBoard.Length; x++)
+            {
+                this.gameBoard[x] = this.fill;
+                i++;
+                if (i == 3)
+                {
+                    i = 0;
+                }
+            }
+            return gameBoard;
         }
 
         public bool isPlayable()
         {
             return playable;
-        }
-
-        public bool checkBoard(String[] DBGameBoard)
-        {
-            return gameBoard.Equals(DBGameBoard);
         }
     }
 }

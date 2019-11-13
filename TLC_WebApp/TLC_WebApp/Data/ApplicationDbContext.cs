@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using TLC_WebApp.Models;
 
 namespace TLC_WebApp.Data
 {
@@ -13,6 +12,5 @@ namespace TLC_WebApp.Data
             : base(options)
         {
         }
-        public DbSet<TLC_WebApp.Models.GameBoard> GameBoard { get; set; }
     }
 }
