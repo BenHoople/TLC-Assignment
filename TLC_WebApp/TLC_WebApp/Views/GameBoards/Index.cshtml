@@ -1,0 +1,47 @@
+﻿@model TLC_WebApp.Models.Game
+
+
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="container">
+    <div class="row">
+        <button type="button" class="btn" asp-action='Play(@Model, "TopLeft")'>
+            @Model.gb.TopLeft
+        </button>
+        <button type="button" class="btn">
+            @Model.gb.TopMiddle
+        </button>
+        <button type="button" class="btn">
+            @Model.gb.TopRight
+        </button>
+    </div>
+    <br />
+    <div class="row">
+        <button type="button" class="btn">
+            @Model.gb.MiddleLeft
+        </button>
+        <button type="button" class="btn">
+            @Model.gb.MiddleMiddle
+        </button>
+        <button type="button" class="btn">
+            @Model.gb.MiddleRight
+        </button>
+    </div>
+    <br />
+    <div class="row">
+        <button type="button" class="btn col">
+            @Model.gb.BottomLeft
+        </button>
+        <button type="button" class="btn col">
+            @Model.gb.BottomMiddle
+        </button>
+        <button type="button" class="btn col">
+            @Model.gb.BottomRight
+        </button>
+    </div>
+</div>

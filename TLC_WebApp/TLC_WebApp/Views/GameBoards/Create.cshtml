@@ -1,0 +1,73 @@
+﻿@model TLC_WebApp.Models.GameBoard
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>GameBoard</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TopLeft" class="control-label"></label>
+                <input asp-for="TopLeft" class="form-control" />
+                <span asp-validation-for="TopLeft" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TopMiddle" class="control-label"></label>
+                <input asp-for="TopMiddle" class="form-control" />
+                <span asp-validation-for="TopMiddle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TopRight" class="control-label"></label>
+                <input asp-for="TopRight" class="form-control" />
+                <span asp-validation-for="TopRight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleLeft" class="control-label"></label>
+                <input asp-for="MiddleLeft" class="form-control" />
+                <span asp-validation-for="MiddleLeft" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleMiddle" class="control-label"></label>
+                <input asp-for="MiddleMiddle" class="form-control" />
+                <span asp-validation-for="MiddleMiddle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleRight" class="control-label"></label>
+                <input asp-for="MiddleRight" class="form-control" />
+                <span asp-validation-for="MiddleRight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BottomLeft" class="control-label"></label>
+                <input asp-for="BottomLeft" class="form-control" />
+                <span asp-validation-for="BottomLeft" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BottomMiddle" class="control-label"></label>
+                <input asp-for="BottomMiddle" class="form-control" />
+                <span asp-validation-for="BottomMiddle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BottomRight" class="control-label"></label>
+                <input asp-for="BottomRight" class="form-control" />
+                <span asp-validation-for="BottomRight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
