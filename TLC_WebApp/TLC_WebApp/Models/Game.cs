@@ -44,5 +44,13 @@ namespace TLC_WebApp.Models
         {
             return gameBoard.Equals(DBGameBoard);
         }
+        public bool isMoveValid(String position)
+        {
+            if (position.Equals(x) || position.Equals(o))
+            {
+                return false;
+            }
+            else return true;
+        }
     }
 }
