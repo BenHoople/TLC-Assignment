@@ -19,7 +19,7 @@ namespace TLC_WebApp.Models
         public virtual String BottomMiddle { get; set; }= "-";
         public virtual String BottomRight { get; set; }= "-";
         [NotMapped]
-        public String[] dBGameBoard { get; set; } = new string[9];
+        public string[] dBGameBoard { get; set; } = new string[9];
 
         public GameBoard() {
             dBGameBoard[0]= TopLeft;

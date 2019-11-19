@@ -18,20 +18,28 @@ namespace TLC_WebApp.Controllers
         {
             _context = context;
         }
+        public static Game game = new Game();
 
         // GET: GameBoards
         public async Task<IActionResult> Index()
         {
-            Game game = new Game();
             return View(game);
         }
-        public void Play(Game game, String position)
+        //verify position of clicked button.
+        public RedirectToActionResult Clicked(String position)
         {
             switch (position)
             {
                 case "TopLeft":
-                    game.gb.TopLeft = game.turn;
-                    game.move();
+                    if (game.isMoveValid(game.gb.TopLeft))
+                    {
+                        game.gb.TopLeft = game.turn;
+                        game.move();
+                    }
+                    else
+                    {
+                       // new GCNotificationStatus();
+                    }
                     break;
                 case "TopMiddle":
                     game.gb.TopMiddle = game.turn;
@@ -54,22 +62,23 @@ namespace TLC_WebApp.Controllers
                     game.move();
                     break;
                 case "BottomLeft":
-                    game.gb.BottomRight = game.turn;
+                    game.gb.BottomLeft = game.turn;
                     game.move();
                     break;
                 case "BottomMiddle":
                     game.gb.BottomMiddle = game.turn;
-                    game.move();                    
+                    game.move();
                     break;
                 case "BottomRight":
                     game.gb.BottomRight = game.turn;
-                    game.move();                    
+                    game.move();
                     break;
                 default:
                     break;
             }
+            return RedirectToAction(nameof(Index));
         }
-        // GET: GameBoards/Details/5
+            // GET: GameBoards/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
