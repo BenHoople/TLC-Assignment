@@ -19,7 +19,12 @@ namespace TLC_WebApp.Controllers
             _context = context;
         }
         public static Game game = new Game();
-        public static string winner = "No Winner Yet";
+        
+        public RedirectToActionResult NewGame()
+        {
+            game = new Game();
+            return RedirectToAction(nameof(Index));
+        }
 
         // GET: GameBoards
         public async Task<IActionResult> Index()
@@ -29,6 +34,7 @@ namespace TLC_WebApp.Controllers
         //verify position of clicked button.
         public RedirectToActionResult Clicked(String position)
         {
+            if (game.playable) { 
             switch (position)
             {
                 case "TopLeft":
@@ -36,40 +42,26 @@ namespace TLC_WebApp.Controllers
                     {
                         game.gb.TopLeft = game.turn;
                     }
-                    else
-                    {
-                        winner = "Thats Not a Valid Move!";
-                    }
                     break;
                 case "TopMiddle":
                     if (game.isMoveValid(game.gb.TopMiddle))
                     {
                         game.gb.TopMiddle = game.turn;
                     }
-                    else
-                    {
-                        winner = "Thats Not a Valid Move!";
-                    }
                     break;
                 case "TopRight":
-                    if(game.isMoveValid(game.gb.TopRight)){
+                    if (game.isMoveValid(game.gb.TopRight)) {
                         game.gb.TopRight = game.turn;
-                    }else{
-                        winner = "Thats Not a Valid Move!";
                     }
                     break;
                 case "MiddleLeft":
-                    if(game.isMoveValid(game.gb.MiddleLeft)){
-                    game.gb.MiddleLeft = game.turn;
-                        }else{
-                        winner = "Thats Not a Valid Move!";
-                        }
+                    if (game.isMoveValid(game.gb.MiddleLeft)) {
+                        game.gb.MiddleLeft = game.turn;
+                    }
                     break;
                 case "MiddleMiddle":
-                    if(game.isMoveValid(game.gb.MiddleMiddle)){
+                    if (game.isMoveValid(game.gb.MiddleMiddle)) {
                         game.gb.MiddleMiddle = game.turn;
-                    }else{
-                        winner = "Thats Not a Valid Move!";
                     }
                     break;
                 case "MiddleRight":
@@ -77,19 +69,12 @@ namespace TLC_WebApp.Controllers
                     {
                         game.gb.MiddleRight = game.turn;
                     }
-                    else
-                    {
-                        winner = "Thats Not a Valid Move!";
-                    }
+
                     break;
                 case "BottomLeft":
                     if (game.isMoveValid(game.gb.BottomLeft))
                     {
                         game.gb.BottomLeft = game.turn;
-                    }
-                    else
-                    {
-                        winner = "Thats Not a Valid Move!";
                     }
                     break;
                 case "BottomMiddle":
@@ -97,28 +82,28 @@ namespace TLC_WebApp.Controllers
                     {
                         game.gb.BottomMiddle = game.turn;
                     }
-                    else
-                    {
-                        winner = "Thats Not a Valid Move!";
-                    }
                     break;
                 case "BottomRight":
                     if (game.isMoveValid(game.gb.BottomRight))
                     {
                         game.gb.BottomRight = game.turn;
                     }
-                    else
-                    {
-                        winner = "Thats Not a Valid Move!";
-                    }
                     break;
                 default:
                     break;
             }
-            game.flipBoard();
-            if (game.win())
+            if (game.isMoveValid(position))
             {
-                winner = "The Winner is " + game.turn + "!";
+
+                game.flipBoard();
+                if (!game.win())
+                { 
+                    game.move();
+                }
+
+            }
+            }else{
+                game.title = "Please Press New Game!";
             }
             return RedirectToAction(nameof(Index));
         }

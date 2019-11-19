@@ -10,7 +10,7 @@ namespace TLC_WebApp.Models
 
         public String x = "X", o = "O", fill = "-";
         public byte choice;
-        public String turn;
+        public String turn, title = "Good Luck!", whoGoesNext;
         public bool playable;
         public GameBoard gb = new GameBoard();
         public string gameBoard;
@@ -22,6 +22,7 @@ namespace TLC_WebApp.Models
         {
             this.turn = x;
             this.playable = true;
+            this.whoGoesNext = "It's " + turn + "'s to Move!";
         }
         //i did more than neccessary here but i'm tired. this will create a string of the gb and flip it for easier
         //win validation and for DataBase validation.
@@ -52,7 +53,12 @@ namespace TLC_WebApp.Models
                 ninetyDegrees.Contains(winCondition) ||
                 diagonalOne.Contains(winCondition) ||
                 diagonalTwo.Contains(winCondition))
-            { return true; }
+            {
+                title = "The Winner is " + turn + "!";
+                whoGoesNext = "Great Game!";
+                playable = false;
+                return true;
+            }
             else return false;
         }
         //this will change who's turn it is!
@@ -66,7 +72,7 @@ namespace TLC_WebApp.Models
             {
                 this.turn = x;
             }
-            move();
+            this.whoGoesNext = "It's " + turn + "'s to Move!";
         }
         //not sure if i'll still use this or not, it was for debuggin but i may repurpose later for DB
         public bool checkBoard(String[] DBGameBoard)
@@ -78,9 +84,13 @@ namespace TLC_WebApp.Models
         {
             if (position.Equals(x) || position.Equals(o))
             {
+                this.title = "Thats Not a Valid Move!";
                 return false;
             }
-            else return true;
+            else
+            {
+                return true;
+            }
         }
 
     }
