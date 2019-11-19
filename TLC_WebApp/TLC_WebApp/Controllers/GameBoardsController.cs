@@ -19,6 +19,7 @@ namespace TLC_WebApp.Controllers
             _context = context;
         }
         public static Game game = new Game();
+        public static string winner = "No Winner Yet";
 
         // GET: GameBoards
         public async Task<IActionResult> Index()
@@ -34,47 +35,90 @@ namespace TLC_WebApp.Controllers
                     if (game.isMoveValid(game.gb.TopLeft))
                     {
                         game.gb.TopLeft = game.turn;
-                        game.move();
                     }
                     else
                     {
-                       // new GCNotificationStatus();
+                        winner = "Thats Not a Valid Move!";
                     }
                     break;
                 case "TopMiddle":
-                    game.gb.TopMiddle = game.turn;
-                    game.move();
+                    if (game.isMoveValid(game.gb.TopMiddle))
+                    {
+                        game.gb.TopMiddle = game.turn;
+                    }
+                    else
+                    {
+                        winner = "Thats Not a Valid Move!";
+                    }
                     break;
                 case "TopRight":
-                    game.gb.TopRight = game.turn;
-                    game.move();
+                    if(game.isMoveValid(game.gb.TopRight)){
+                        game.gb.TopRight = game.turn;
+                    }else{
+                        winner = "Thats Not a Valid Move!";
+                    }
                     break;
                 case "MiddleLeft":
+                    if(game.isMoveValid(game.gb.MiddleLeft)){
                     game.gb.MiddleLeft = game.turn;
-                    game.move();
+                        }else{
+                        winner = "Thats Not a Valid Move!";
+                        }
                     break;
                 case "MiddleMiddle":
-                    game.gb.MiddleMiddle = game.turn;
-                    game.move();
+                    if(game.isMoveValid(game.gb.MiddleMiddle)){
+                        game.gb.MiddleMiddle = game.turn;
+                    }else{
+                        winner = "Thats Not a Valid Move!";
+                    }
                     break;
                 case "MiddleRight":
-                    game.gb.MiddleRight = game.turn;
-                    game.move();
+                    if (game.isMoveValid(game.gb.MiddleRight))
+                    {
+                        game.gb.MiddleRight = game.turn;
+                    }
+                    else
+                    {
+                        winner = "Thats Not a Valid Move!";
+                    }
                     break;
                 case "BottomLeft":
-                    game.gb.BottomLeft = game.turn;
-                    game.move();
+                    if (game.isMoveValid(game.gb.BottomLeft))
+                    {
+                        game.gb.BottomLeft = game.turn;
+                    }
+                    else
+                    {
+                        winner = "Thats Not a Valid Move!";
+                    }
                     break;
                 case "BottomMiddle":
-                    game.gb.BottomMiddle = game.turn;
-                    game.move();
+                    if (game.isMoveValid(game.gb.BottomMiddle))
+                    {
+                        game.gb.BottomMiddle = game.turn;
+                    }
+                    else
+                    {
+                        winner = "Thats Not a Valid Move!";
+                    }
                     break;
                 case "BottomRight":
-                    game.gb.BottomRight = game.turn;
-                    game.move();
+                    if (game.isMoveValid(game.gb.BottomRight))
+                    {
+                        game.gb.BottomRight = game.turn;
+                    }
+                    else
+                    {
+                        winner = "Thats Not a Valid Move!";
+                    }
                     break;
                 default:
                     break;
+            }
+            game.flipBoard();
+            if (game.win())
+            {
+                winner = "The Winner is " + game.turn + "!";
             }
             return RedirectToAction(nameof(Index));
         }
