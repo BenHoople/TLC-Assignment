@@ -7,52 +7,58 @@ namespace TLC_WebApp.Models
 {
     public class Game
     {
-
+        //what i am currently using to indicate choices and to fill the board.
         public String x = "X", o = "O", fill = "-";
-        public byte choice;
+        //dynamic titles for the index
         public String turn, title = "Good Luck!", whoGoesNext;
+        //checks to see if someone has won or not
         public bool playable;
+        //the board we actually use to play the game
         public GameBoard gb = new GameBoard();
-        public string gameBoard;
+        //board flipping experiment
+        private string [] gameBoard;
         private string ninetyDegrees;
         private string oneEighty;
         private string twoSeventy;
+        //for the AI
+        private int index;
+        Random random = new Random();
+
         //this will create a new game
         public Game()
         {
-            this.turn = x;
-            this.playable = true;
-            this.whoGoesNext = "It's " + turn + "'s to Move!";
+            turn = x;
+            playable = true;
+            whoGoesNext = "It's " + turn + "'s to Move!";
         }
         //i did more than neccessary here but i'm tired. this will create a string of the gb and flip it for easier
         //win validation and for DataBase validation.
         public void flipBoard()
         {
-            this.gb.setGameBoard();
-            this.gameBoard = 
-                this.gb.dBGameBoard[0] + this.gb.dBGameBoard[1] + this.gb.dBGameBoard[2] +
-                this.gb.dBGameBoard[3] + this.gb.dBGameBoard[4] + this.gb.dBGameBoard[5] +
-                this.gb.dBGameBoard[6] + this.gb.dBGameBoard[7] + this.gb.dBGameBoard[8];
-            oneEighty = ReverseString(gameBoard);
-            this.ninetyDegrees =
-                this.gb.dBGameBoard[6] + this.gb.dBGameBoard[3] + this.gb.dBGameBoard[0] +
-                this.gb.dBGameBoard[7] + this.gb.dBGameBoard[4] + this.gb.dBGameBoard[1] +
-                this.gb.dBGameBoard[8] + this.gb.dBGameBoard[5] + this.gb.dBGameBoard[2];
-            twoSeventy = ReverseString(ninetyDegrees);
+            gb.getGameBoard();
+            gameBoard = gb.dBGameBoard;
+            ninetyDegrees =
+                (gb.dBGameBoard[6] + gb.dBGameBoard[3] + gb.dBGameBoard[0] +
+                gb.dBGameBoard[7] + gb.dBGameBoard[4] + gb.dBGameBoard[1] +
+                gb.dBGameBoard[8] + gb.dBGameBoard[5] + gb.dBGameBoard[2]);
         }
         //this will see if there is a winner
         public bool win()
         {
             string winCondition = turn + turn + turn;
             string diagonalOne =
-                this.gb.dBGameBoard[0] + this.gb.dBGameBoard[4] + this.gb.dBGameBoard[8];
+                gb.dBGameBoard[0] + gb.dBGameBoard[4] + gb.dBGameBoard[8];
             string diagonalTwo =
-                this.gb.dBGameBoard[2] + this.gb.dBGameBoard[4] + this.gb.dBGameBoard[6];
-
-            if (gameBoard.Contains(winCondition) ||
-                ninetyDegrees.Contains(winCondition) ||
-                diagonalOne.Contains(winCondition) ||
-                diagonalTwo.Contains(winCondition))
+                gb.dBGameBoard[2] + gb.dBGameBoard[4] + gb.dBGameBoard[6];
+            char[] array = ninetyDegrees.ToCharArray();
+            if((gameBoard[0]+gameBoard[1]+gameBoard[2]).Equals(winCondition)||
+                (gameBoard[3] + gameBoard[4] + gameBoard[5]).Equals(winCondition)||
+                    (gameBoard[6] + gameBoard[7] + gameBoard[8]).Equals(winCondition)||
+                    diagonalOne.Contains(winCondition) ||
+                    diagonalTwo.Contains(winCondition) ||
+                    (array[0] + array[1] + array[2]).Equals(winCondition) ||
+                    (array[3] + array[4] + array[5]).Equals(winCondition) ||
+                    (array[6] + array[7] + array[8]).Equals(winCondition))
             {
                 title = "The Winner is " + turn + "!";
                 whoGoesNext = "Great Game!";
@@ -64,15 +70,15 @@ namespace TLC_WebApp.Models
         //this will change who's turn it is!
         public void move()
         {
-            if (this.turn == x)
+            if (turn == x)
             {
-                this.turn = o;
+                turn = o;
             }
             else
             {
-                this.turn = x;
+                turn = x;
             }
-            this.whoGoesNext = "It's " + turn + "'s to Move!";
+            whoGoesNext = "It's " + turn + "'s to Move!";
         }
         //not sure if i'll still use this or not, it was for debuggin but i may repurpose later for DB
         public bool checkBoard(String[] DBGameBoard)
@@ -84,7 +90,7 @@ namespace TLC_WebApp.Models
         {
             if (position.Equals(x) || position.Equals(o))
             {
-                this.title = "Thats Not a Valid Move!";
+                title = "Thats Not a Valid Move!";
                 return false;
             }
             else
@@ -105,70 +111,70 @@ namespace TLC_WebApp.Models
             switch (position)
             {
                 case "TopLeft":
-                    if (this.isMoveValid(this.gb.TopLeft))
+                    if (isMoveValid(gb.TopLeft))
                     {
-                        this.gb.TopLeft = this.turn;
+                        gb.TopLeft = turn;
                     }
                     break;
                 case "TopMiddle":
-                    if (this.isMoveValid(this.gb.TopMiddle))
+                    if (isMoveValid(gb.TopMiddle))
                     {
-                        this.gb.TopMiddle = this.turn;
+                        gb.TopMiddle = turn;
                     }
                     break;
                 case "TopRight":
-                    if (this.isMoveValid(this.gb.TopRight))
+                    if (isMoveValid(gb.TopRight))
                     {
-                        this.gb.TopRight = this.turn;
+                        gb.TopRight = turn;
                     }
                     break;
                 case "MiddleLeft":
-                    if (this.isMoveValid(this.gb.MiddleLeft))
+                    if (isMoveValid(gb.MiddleLeft))
                     {
-                        this.gb.MiddleLeft = this.turn;
+                        gb.MiddleLeft = turn;
                     }
                     break;
                 case "MiddleMiddle":
-                    if (this.isMoveValid(this.gb.MiddleMiddle))
+                    if (isMoveValid(gb.MiddleMiddle))
                     {
-                        this.gb.MiddleMiddle = this.turn;
+                        gb.MiddleMiddle = turn;
                     }
                     break;
                 case "MiddleRight":
-                    if (this.isMoveValid(this.gb.MiddleRight))
+                    if (isMoveValid(gb.MiddleRight))
                     {
-                        this.gb.MiddleRight = this.turn;
+                        gb.MiddleRight = turn;
                     }
 
                     break;
                 case "BottomLeft":
-                    if (this.isMoveValid(this.gb.BottomLeft))
+                    if (isMoveValid(gb.BottomLeft))
                     {
-                        this.gb.BottomLeft = this.turn;
+                        gb.BottomLeft = turn;
                     }
                     break;
                 case "BottomMiddle":
-                    if (this.isMoveValid(this.gb.BottomMiddle))
+                    if (isMoveValid(gb.BottomMiddle))
                     {
-                        this.gb.BottomMiddle = this.turn;
+                        gb.BottomMiddle = turn;
                     }
                     break;
                 case "BottomRight":
-                    if (this.isMoveValid(this.gb.BottomRight))
+                    if (isMoveValid(gb.BottomRight))
                     {
-                        this.gb.BottomRight = this.turn;
+                        gb.BottomRight = turn;
                     }
                     break;
                 default:
                     break;
             }//end switch
-            if (this.isMoveValid(position))
+            if (isMoveValid(position))
             {
 
-                this.flipBoard();
-                if (!this.win())
+                flipBoard();
+                if (!win())
                 {
-                    this.move();
+                    move();
                 }
 
             }
@@ -177,5 +183,23 @@ namespace TLC_WebApp.Models
                 title = "Please Press New Game!";
             }
         }//end of decision
+
+
+        public void AIChoice()
+        {
+            do
+            {
+                index = random.Next(9);
+            } while (gb.dBGameBoard[index].Equals(x)|| gb.dBGameBoard[index].Equals(o));
+            gb.dBGameBoard[index] = turn;
+            gb.setGameBoard();
+            flipBoard();
+            if (!win())
+            {
+                move();
+            }
+        }
+
+
     }
 }

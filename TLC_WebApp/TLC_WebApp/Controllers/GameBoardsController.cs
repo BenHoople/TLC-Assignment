@@ -38,6 +38,10 @@ namespace TLC_WebApp.Controllers
             {
                 game.decision(position);
             }
+            if (game.playable)
+            {
+                game.AIChoice();
+            }
             return RedirectToAction(nameof(Index));
         }
             // GET: GameBoards/Details/5

@@ -21,7 +21,7 @@ namespace TLC_WebApp.Models
         [NotMapped]
         public string[] dBGameBoard { get; set; } = new string[9];
 
-        public void setGameBoard()
+        public void getGameBoard()
         {
             dBGameBoard[0] = TopLeft;
             dBGameBoard[1] = TopMiddle;
@@ -32,6 +32,18 @@ namespace TLC_WebApp.Models
             dBGameBoard[6] = BottomLeft;
             dBGameBoard[7] = BottomMiddle;
             dBGameBoard[8] = BottomRight;
+        }
+        public void setGameBoard()
+        {
+            TopLeft = dBGameBoard[0];
+            TopMiddle = dBGameBoard[1];
+            TopRight = dBGameBoard[2];
+            MiddleLeft = dBGameBoard[3];
+            MiddleMiddle = dBGameBoard[4];
+            MiddleRight = dBGameBoard[5];
+            BottomLeft = dBGameBoard[6];
+            BottomMiddle = dBGameBoard[7];
+            BottomRight = dBGameBoard[8];
         }
     }
 }
