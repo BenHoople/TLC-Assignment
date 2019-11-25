@@ -15,14 +15,15 @@ namespace TLC_WebApp.Models
         public bool playable;
         //the board we actually use to play the game
         public GameBoard gb = new GameBoard();
-        //board flipping experiment
+        //board flipping for easier win validation
         private string [] gameBoard;
         private string ninetyDegrees;
-        private string oneEighty;
-        private string twoSeventy;
         //for the AI
         private int index;
         Random random = new Random();
+        private string[] aIDecisionArray = { "TopLeft", "TopMiddle", "TopRight", "MiddleLeft", "MiddleMiddle", "MiddleRight", "BottomLeft", "BottomMiddle", "BottomRight" };
+        //for turn tracking
+        public List<Turn> turnTracker = new List<Turn>();
 
         //this will create a new game
         public Game()
@@ -46,19 +47,17 @@ namespace TLC_WebApp.Models
         public bool win()
         {
             string winCondition = turn + turn + turn;
-            string diagonalOne =
-                gb.dBGameBoard[0] + gb.dBGameBoard[4] + gb.dBGameBoard[8];
-            string diagonalTwo =
-                gb.dBGameBoard[2] + gb.dBGameBoard[4] + gb.dBGameBoard[6];
-            char[] array = ninetyDegrees.ToCharArray();
+            string diagonalOne = gameBoard[0] + gameBoard[4] + gameBoard[8];
+            string diagonalTwo = gameBoard[2] + gameBoard[4] + gameBoard[6];
+
             if((gameBoard[0]+gameBoard[1]+gameBoard[2]).Equals(winCondition)||
                 (gameBoard[3] + gameBoard[4] + gameBoard[5]).Equals(winCondition)||
                     (gameBoard[6] + gameBoard[7] + gameBoard[8]).Equals(winCondition)||
                     diagonalOne.Contains(winCondition) ||
                     diagonalTwo.Contains(winCondition) ||
-                    (array[0] + array[1] + array[2]).Equals(winCondition) ||
-                    (array[3] + array[4] + array[5]).Equals(winCondition) ||
-                    (array[6] + array[7] + array[8]).Equals(winCondition))
+                    (ninetyDegrees[0] + ninetyDegrees[1] + ninetyDegrees[2]).Equals(winCondition) ||
+                    (ninetyDegrees[3] + ninetyDegrees[4] + ninetyDegrees[5]).Equals(winCondition) ||
+                    (ninetyDegrees[6] + ninetyDegrees[7] + ninetyDegrees[8]).Equals(winCondition))
             {
                 title = "The Winner is " + turn + "!";
                 whoGoesNext = "Great Game!";
@@ -114,36 +113,66 @@ namespace TLC_WebApp.Models
                     if (isMoveValid(gb.TopLeft))
                     {
                         gb.TopLeft = turn;
+                        flipBoard();
+                        if (!win())
+                        {
+                            move();
+                        }
                     }
                     break;
                 case "TopMiddle":
                     if (isMoveValid(gb.TopMiddle))
                     {
                         gb.TopMiddle = turn;
+                        flipBoard();
+                        if (!win())
+                        {
+                            move();
+                        }
                     }
                     break;
                 case "TopRight":
                     if (isMoveValid(gb.TopRight))
                     {
                         gb.TopRight = turn;
+                        flipBoard();
+                        if (!win())
+                        {
+                            move();
+                        }
                     }
                     break;
                 case "MiddleLeft":
                     if (isMoveValid(gb.MiddleLeft))
                     {
                         gb.MiddleLeft = turn;
+                        flipBoard();
+                        if (!win())
+                        {
+                            move();
+                        }
                     }
                     break;
                 case "MiddleMiddle":
                     if (isMoveValid(gb.MiddleMiddle))
                     {
                         gb.MiddleMiddle = turn;
+                        flipBoard();
+                        if (!win())
+                        {
+                            move();
+                        }
                     }
                     break;
                 case "MiddleRight":
                     if (isMoveValid(gb.MiddleRight))
                     {
                         gb.MiddleRight = turn;
+                        flipBoard();
+                        if (!win())
+                        {
+                            move();
+                        }
                     }
 
                     break;
@@ -151,34 +180,39 @@ namespace TLC_WebApp.Models
                     if (isMoveValid(gb.BottomLeft))
                     {
                         gb.BottomLeft = turn;
+                        flipBoard();
+                        if (!win())
+                        {
+                            move();
+                        }
                     }
                     break;
                 case "BottomMiddle":
                     if (isMoveValid(gb.BottomMiddle))
                     {
                         gb.BottomMiddle = turn;
+                        flipBoard();
+                        if (!win())
+                        {
+                            move();
+                        }
                     }
                     break;
                 case "BottomRight":
                     if (isMoveValid(gb.BottomRight))
                     {
                         gb.BottomRight = turn;
+                        flipBoard();
+                        if (!win())
+                        {
+                            move();
+                        }
                     }
                     break;
                 default:
                     break;
             }//end switch
-            if (isMoveValid(position))
-            {
-
-                flipBoard();
-                if (!win())
-                {
-                    move();
-                }
-
-            }
-            else
+            if (playable == false)
             {
                 title = "Please Press New Game!";
             }
@@ -191,7 +225,8 @@ namespace TLC_WebApp.Models
             {
                 index = random.Next(9);
             } while (gb.dBGameBoard[index].Equals(x)|| gb.dBGameBoard[index].Equals(o));
-            gb.dBGameBoard[index] = turn;
+            decision(aIDecisionArray[index]);
+            //gb.dBGameBoard[index] = turn;
             gb.setGameBoard();
             flipBoard();
             if (!win())

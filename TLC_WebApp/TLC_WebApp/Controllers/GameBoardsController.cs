@@ -14,10 +14,13 @@ namespace TLC_WebApp.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        private List<GameBoard> gameBoards = new List<GameBoard>();
+
         public GameBoardsController(ApplicationDbContext context)
         {
             _context = context;
         }
+
         public static Game game = new Game();
         
         public RedirectToActionResult NewGame()
@@ -32,16 +35,35 @@ namespace TLC_WebApp.Controllers
             return View(game);
         }
         //verify position of clicked button.
-        public RedirectToActionResult Clicked(String position)
+        public async Task<IActionResult> Clicked(String position)
         {
+
             if (game.playable)
             {
                 game.decision(position);
+                GetDataBaseData();
+                if (!gameBoards.Contains(game.gb))
+                {
+                    game.gb.SendToDatabase();
+                    _context.Add(game.gb);
+                    await _context.SaveChangesAsync();
+                    game.gb.ResetGameBoard();
+                }
             }
+            
             if (game.playable)
             {
                 game.AIChoice();
+                GetDataBaseData();
+                if (!gameBoards.Contains(game.gb))
+                {
+                    game.gb.SendToDatabase();
+                    _context.Add(game.gb);
+                    await _context.SaveChangesAsync();
+                    game.gb.ResetGameBoard();
+                }
             }
+            game.gb.ResetGameBoard();
             return RedirectToAction(nameof(Index));
         }
             // GET: GameBoards/Details/5
@@ -167,6 +189,17 @@ namespace TLC_WebApp.Controllers
         private bool GameBoardExists(int id)
         {
             return _context.GameBoard.Any(e => e.ID == id);
+        }
+
+        public void GetDataBaseData() 
+        {
+            try
+            {
+                gameBoards = _context.GameBoard.ToList();
+            }catch(Exception e)
+            {
+                RedirectToAction(nameof(Index));
+            }
         }
 
         [HttpPost]
