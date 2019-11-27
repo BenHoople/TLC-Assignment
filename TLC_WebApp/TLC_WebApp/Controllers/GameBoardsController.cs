@@ -19,10 +19,11 @@ namespace TLC_WebApp.Controllers
         public GameBoardsController(ApplicationDbContext context)
         {
             _context = context;
+            GetDataBaseData();
         }
 
         public static Game game = new Game();
-        
+
         public RedirectToActionResult NewGame()
         {
             game = new Game();
@@ -38,35 +39,53 @@ namespace TLC_WebApp.Controllers
         public async Task<IActionResult> Clicked(String position)
         {
 
-            if (game.playable)
+            if (game.playable)//make sure game is playable
             {
-                game.decision(position);
-                GetDataBaseData();
-                if (!gameBoards.Contains(game.gb))
+                game.decision(position);//make the move
+                
+                if (!gameBoards.Contains(game.gb))//check to see if the gameboard exists in the database
+                {//here i've determined it not to be in the database so i have to add it.
+                    game.gb.SendToDatabase();//here i will make all "-"'s = 0's so the math can begin
+                    _context.Add(game.gb);//i'll add the game to the database here
+                    await _context.SaveChangesAsync();//needed coding stuff
+                    GetDataBaseData();//by updating the gameBoards list i'll be able to get the gameboard ID for later updating
+                }
+                    //yes im searching the list twice in a row which seems redundant but not sure how else to do it
+                    //this should change the game.gb board to numbers for ai searching and give it an ID to put into the Turns list
+                    game.gb = gameBoards.Find(p => p.Equals(game.gb));
+            }
+            if (game.playable)//game should be playable unless there are no turns to make or if x won
+            {
+                game.AIChoice(); //choose the highest number or go for broke
+                
+            }
+            if (!game.playable)
+            {
+                GameBoard update = new GameBoard();
+                foreach (Turn turn in game.turnTracker)
                 {
-                    game.gb.SendToDatabase();
-                    _context.Add(game.gb);
-                    await _context.SaveChangesAsync();
-                    game.gb.ResetGameBoard();
+                    update = new GameBoard(gameBoards.Find(p => p.ID.Equals(turn.ID)));
+                    update.UpdateAI(turn.position, game.learningRate);
+                    _context.GameBoard.Update(update);
+                    await _context.SaveChangesAsync();//needed coding stuff
                 }
             }
-            
-            if (game.playable)
-            {
-                game.AIChoice();
-                GetDataBaseData();
-                if (!gameBoards.Contains(game.gb))
-                {
-                    game.gb.SendToDatabase();
-                    _context.Add(game.gb);
-                    await _context.SaveChangesAsync();
-                    game.gb.ResetGameBoard();
-                }
-            }
-            game.gb.ResetGameBoard();
+            //game.gb.ResetGameBoard();
             return RedirectToAction(nameof(Index));
         }
-            // GET: GameBoards/Details/5
+
+        private async void UpdateChoices()
+        {
+            GameBoard update = new GameBoard();
+            foreach (Turn turn in game.turnTracker){
+                update = new GameBoard(gameBoards.Find(p => p.ID.Equals(turn.ID)));
+                update.UpdateAI(turn.position, game.learningRate);
+                _context.GameBoard.Update(update);
+                await _context.SaveChangesAsync();//needed coding stuff
+            }
+        }
+
+        // GET: GameBoards/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

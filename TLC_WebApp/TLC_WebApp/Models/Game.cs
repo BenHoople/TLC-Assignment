@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TLC_WebApp.Models
@@ -22,8 +23,9 @@ namespace TLC_WebApp.Models
         private int index;
         Random random = new Random();
         private string[] aIDecisionArray = { "TopLeft", "TopMiddle", "TopRight", "MiddleLeft", "MiddleMiddle", "MiddleRight", "BottomLeft", "BottomMiddle", "BottomRight" };
-        //for turn tracking
+        //for turn tracking and updating
         public List<Turn> turnTracker = new List<Turn>();
+        public int learningRate = 0;
 
         //this will create a new game
         public Game()
@@ -62,10 +64,33 @@ namespace TLC_WebApp.Models
                 title = "The Winner is " + turn + "!";
                 whoGoesNext = "Great Game!";
                 playable = false;
+                Learn(turn);
                 return true;
             }
-            else return false;
+            //got this code from here: https://stackoverflow.com/questions/18251875/in-c-how-to-check-whether-a-string-contains-an-integer
+            //this is much nicer looking than trying to implement REGEX which looked awful and im unfamiliar with it.
+            //if (!ninetyDegrees.Any(c => char.IsDigit(c))||!ninetyDegrees.Contains(fill))
+            //{
+            //    title = "Cats Game!";
+            //    whoGoesNext = "Try Again!";
+            //    playable = false;
+            //    return true;
+            //}
+            return false;
         }
+
+        private void Learn(string turn)
+        {
+            if(turn == x)
+            {
+                learningRate = -1;
+            }
+            else
+            {
+                learningRate = 1;
+            }
+        }
+
         //this will change who's turn it is!
         public void move()
         {
@@ -96,14 +121,6 @@ namespace TLC_WebApp.Models
             {
                 return true;
             }
-        }
-        //taken from online at: https://www.dotnetperls.com/reverse-string
-        //i could have done it myself but it was already there
-        public static string ReverseString(string s)
-        {
-            char[] arr = s.ToCharArray();
-            Array.Reverse(arr);
-            return new string(arr);
         }
         public void decision(string position)
         {
@@ -218,23 +235,23 @@ namespace TLC_WebApp.Models
             }
         }//end of decision
 
-
         public void AIChoice()
         {
-            do
-            {
-                index = random.Next(9);
-            } while (gb.dBGameBoard[index].Equals(x)|| gb.dBGameBoard[index].Equals(o));
-            decision(aIDecisionArray[index]);
-            //gb.dBGameBoard[index] = turn;
-            gb.setGameBoard();
-            flipBoard();
-            if (!win())
-            {
-                move();
-            }
+            gb.SetAIGameBoard();
+            //got this code from here: https://stackoverflow.com/questions/13755007/c-sharp-find-highest-array-value-and-index
+            //this finds the highest number in the ai decision array
+            int max = gb.aiDecisionBoard.Max();
+            //add the selection to the turn tracker for later processing
+            turnTracker.Add(new Turn(gb.ID, aIDecisionArray[Array.IndexOf(gb.aiDecisionBoard, max)]));
+            //this selects the index of the decision array and feeds it to the string array here getting a string value and the location
+            decision(aIDecisionArray[Array.IndexOf(gb.aiDecisionBoard,max)]);
         }
-
-
     }
+    //this was code to select a position at random, keeping it here until i can get the AI to work
+    //do
+    //{
+    //    index = random.Next(9);
+    //} while (gb.dBGameBoard[index].Equals(x)|| gb.dBGameBoard[index].Equals(o));
+    //decision(aIDecisionArray[index]);
+    //gb.dBGameBoard[index] = turn;
 }

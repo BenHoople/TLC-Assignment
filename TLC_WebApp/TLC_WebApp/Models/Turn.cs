@@ -7,8 +7,8 @@ namespace TLC_WebApp.Models
 {
     public class Turn
     {
-        int ID = 0;
-        string position;
+        public int ID = 0;
+        public string position;
         public Turn (int ID, string position)
         {
             this.ID = ID;
