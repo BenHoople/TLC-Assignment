@@ -14,10 +14,13 @@ namespace TLC_WebApp.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        private List<GameBoard> gameBoards = new List<GameBoard>();
+
         public GameBoardsController(ApplicationDbContext context)
         {
             _context = context;
         }
+
         public static Game game = new Game();
         
         public RedirectToActionResult NewGame()
@@ -32,79 +35,35 @@ namespace TLC_WebApp.Controllers
             return View(game);
         }
         //verify position of clicked button.
-        public RedirectToActionResult Clicked(String position)
+        public async Task<IActionResult> Clicked(String position)
         {
-            if (game.playable) { 
-            switch (position)
-            {
-                case "TopLeft":
-                    if (game.isMoveValid(game.gb.TopLeft))
-                    {
-                        game.gb.TopLeft = game.turn;
-                    }
-                    break;
-                case "TopMiddle":
-                    if (game.isMoveValid(game.gb.TopMiddle))
-                    {
-                        game.gb.TopMiddle = game.turn;
-                    }
-                    break;
-                case "TopRight":
-                    if (game.isMoveValid(game.gb.TopRight)) {
-                        game.gb.TopRight = game.turn;
-                    }
-                    break;
-                case "MiddleLeft":
-                    if (game.isMoveValid(game.gb.MiddleLeft)) {
-                        game.gb.MiddleLeft = game.turn;
-                    }
-                    break;
-                case "MiddleMiddle":
-                    if (game.isMoveValid(game.gb.MiddleMiddle)) {
-                        game.gb.MiddleMiddle = game.turn;
-                    }
-                    break;
-                case "MiddleRight":
-                    if (game.isMoveValid(game.gb.MiddleRight))
-                    {
-                        game.gb.MiddleRight = game.turn;
-                    }
 
-                    break;
-                case "BottomLeft":
-                    if (game.isMoveValid(game.gb.BottomLeft))
-                    {
-                        game.gb.BottomLeft = game.turn;
-                    }
-                    break;
-                case "BottomMiddle":
-                    if (game.isMoveValid(game.gb.BottomMiddle))
-                    {
-                        game.gb.BottomMiddle = game.turn;
-                    }
-                    break;
-                case "BottomRight":
-                    if (game.isMoveValid(game.gb.BottomRight))
-                    {
-                        game.gb.BottomRight = game.turn;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            if (game.isMoveValid(position))
+            if (game.playable)
             {
-
-                game.flipBoard();
-                if (!game.win())
-                { 
-                    game.move();
+                game.decision(position);
+                GetDataBaseData();
+                if (!gameBoards.Contains(game.gb))
+                {
+                    game.gb.SendToDatabase();
+                    _context.Add(game.gb);
+                    await _context.SaveChangesAsync();
+                    game.gb.ResetGameBoard();
                 }
-
             }
-            }else{
-                game.title = "Please Press New Game!";
+            
+            if (game.playable)
+            {
+                game.AIChoice();
+                GetDataBaseData();
+                if (!gameBoards.Contains(game.gb))
+                {
+                    game.gb.SendToDatabase();
+                    _context.Add(game.gb);
+                    await _context.SaveChangesAsync();
+                    game.gb.ResetGameBoard();
+                }
             }
+            game.gb.ResetGameBoard();
             return RedirectToAction(nameof(Index));
         }
             // GET: GameBoards/Details/5
@@ -230,6 +189,17 @@ namespace TLC_WebApp.Controllers
         private bool GameBoardExists(int id)
         {
             return _context.GameBoard.Any(e => e.ID == id);
+        }
+
+        public void GetDataBaseData() 
+        {
+            try
+            {
+                gameBoards = _context.GameBoard.ToList();
+            }catch(Exception e)
+            {
+                RedirectToAction(nameof(Index));
+            }
         }
 
         [HttpPost]
