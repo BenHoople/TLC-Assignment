@@ -85,17 +85,10 @@ namespace TLC_WebApp.Models
         //overwritting the equals method so i can pass a DB Object into it and get an accurate equals
         public override bool Equals(object obj)
         {
-            getGameBoard();//just to ensure the array is correctly updated with the variables
+            NeutralizeGameBoard();//just to ensure the array is correctly updated with the variables
             GameBoard passedObject = (GameBoard)obj;
-            for(int i = 0; i < passedObject.dBGameBoard.Length; i++)
-            {
-                if ((!dBGameBoard[i].Equals("X") && !passedObject.dBGameBoard[i].Equals("X"))
-                    || (!passedObject.dBGameBoard[i].Equals("O") && dBGameBoard[i].Equals("O"))) // could have made it .Equals("-") but i think its more robust and allows me to pass DB objects with numbers aswell
-                {
-                    passedObject.dBGameBoard[i] = "-"; //shouldn't matter but its here
-                    dBGameBoard[i] = "-";              //if its a dash here, it will be a number in the DB so i have to change it
-                }
-            }
+            passedObject.NeutralizeGameBoard();//not necessary after the first time but to hell with it
+            
             //found this code here:https://stackoverflow.com/questions/6196526/how-to-find-out-whether-two-string-arrays-are-equal-to-other
             //was having issues with Equals and string arrays
             IStructuralEquatable equ = dBGameBoard;
@@ -131,6 +124,17 @@ namespace TLC_WebApp.Models
                 }
             }
             setGameBoard();
+        }
+        //for making the gameboards == eachother regardless of numerical values
+        public void NeutralizeGameBoard()
+        {
+            for (int i = 0; i < dBGameBoard.Length; i++)
+            {
+                if (!dBGameBoard[i].Equals("X") || !dBGameBoard[i].Equals("O") || !dBGameBoard[i].Equals("-"))
+                {
+                    dBGameBoard[i] = "-";
+                }
+            }
         }
         //simply put this will find where the X's and O's are and make it so the AI will NOT choose these spots
         public void SetAIGameBoard()
