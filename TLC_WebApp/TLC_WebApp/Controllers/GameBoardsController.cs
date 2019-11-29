@@ -57,32 +57,37 @@ namespace TLC_WebApp.Controllers
             if (game.playable)//game should be playable unless there are no turns to make or if x won
             {
                 game.AIChoice(); //choose the highest number or go for broke
-                
             }
             if (!game.playable)
             {
-                GameBoard update = new GameBoard();
-                foreach (Turn turn in game.turnTracker)
+                foreach (GameBoard gameBoard in gameBoards)
                 {
-                    update = new GameBoard(gameBoards.Find(p => p.ID.Equals(turn.ID)));
-                    update.UpdateAI(turn.position, game.learningRate);
-                    _context.GameBoard.Update(update);
-                    await _context.SaveChangesAsync();//needed coding stuff
+                    foreach (Turn turn in game.turnTracker)
+                    {
+                        if (turn.ID == gameBoard.ID)
+                        {
+                            gameBoard.UpdateAI(turn.position, game.learningRate);
+                            _context.GameBoard.Update(gameBoard);
+                            await _context.SaveChangesAsync();//needed coding stuff
+                        }
+                    }
                 }
+                //previous code that didn't work#2
+                //game.UpDateAI(_context,gameBoards);
+
+                //previous coe that didn't work #1
+                //GameBoard update = new GameBoard();
+                ////game.gb = null; //release tracking of database object
+                //foreach (Turn turn in game.turnTracker)
+                //{
+                //    update = new GameBoard(gameBoards.Find(p => p.ID.Equals(turn.ID)));
+                //    update.UpdateAI(turn.position, game.learningRate);
+                //    _context.GameBoard.Update(update);
+                //    await _context.SaveChangesAsync();//needed coding stuff
+                //}
             }
             //game.gb.ResetGameBoard();
             return RedirectToAction(nameof(Index));
-        }
-
-        private async void UpdateChoices()
-        {
-            GameBoard update = new GameBoard();
-            foreach (Turn turn in game.turnTracker){
-                update = new GameBoard(gameBoards.Find(p => p.ID.Equals(turn.ID)));
-                update.UpdateAI(turn.position, game.learningRate);
-                _context.GameBoard.Update(update);
-                await _context.SaveChangesAsync();//needed coding stuff
-            }
         }
 
         // GET: GameBoards/Details/5

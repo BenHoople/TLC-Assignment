@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using TLC_WebApp.Data;
 
 namespace TLC_WebApp.Models
 {
@@ -118,7 +119,7 @@ namespace TLC_WebApp.Models
         {
             for (int i = 0; i < dBGameBoard.Length; i++)
             {
-                if (!dBGameBoard[i].Equals("X") || !dBGameBoard[i].Equals("O") || !dBGameBoard[i].Equals("-"))
+                if (!dBGameBoard[i].Equals("X") && !dBGameBoard[i].Equals("O") && !dBGameBoard[i].Equals("-"))
                 {
                     dBGameBoard[i] = "-";
                 }
@@ -130,7 +131,7 @@ namespace TLC_WebApp.Models
         {
             for (int i = 0; i < dBGameBoard.Length; i++)
             {
-                if (!dBGameBoard[i].Equals("X") || !dBGameBoard[i].Equals("O") || !dBGameBoard[i].Equals("-"))
+                if (!dBGameBoard[i].Equals("X") && !dBGameBoard[i].Equals("O") && !dBGameBoard[i].Equals("-"))
                 {
                     dBGameBoard[i] = "-";
                 }
@@ -185,6 +186,7 @@ namespace TLC_WebApp.Models
                         break;
                 }//end switch
         }
+        
 
 
     }

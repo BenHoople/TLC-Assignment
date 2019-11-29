@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TLC_WebApp.Data;
 
 namespace TLC_WebApp.Models
 {
@@ -49,17 +50,17 @@ namespace TLC_WebApp.Models
         public bool win()
         {
             string winCondition = turn + turn + turn;
-            string diagonalOne = gameBoard[0] + gameBoard[4] + gameBoard[8];
-            string diagonalTwo = gameBoard[2] + gameBoard[4] + gameBoard[6];
+            string diagonalOne = gameBoard[0].ToString() + gameBoard[4].ToString() + gameBoard[8].ToString();
+            string diagonalTwo = gameBoard[2].ToString() + gameBoard[4].ToString() + gameBoard[6].ToString();
 
             if((gameBoard[0]+gameBoard[1]+gameBoard[2]).Equals(winCondition)||
                 (gameBoard[3] + gameBoard[4] + gameBoard[5]).Equals(winCondition)||
                     (gameBoard[6] + gameBoard[7] + gameBoard[8]).Equals(winCondition)||
                     diagonalOne.Contains(winCondition) ||
                     diagonalTwo.Contains(winCondition) ||
-                    (ninetyDegrees[0] + ninetyDegrees[1] + ninetyDegrees[2]).Equals(winCondition) ||
-                    (ninetyDegrees[3] + ninetyDegrees[4] + ninetyDegrees[5]).Equals(winCondition) ||
-                    (ninetyDegrees[6] + ninetyDegrees[7] + ninetyDegrees[8]).Equals(winCondition))
+                    (ninetyDegrees[0].ToString() + ninetyDegrees[1].ToString() + ninetyDegrees[2].ToString()).Equals(winCondition) ||
+                    (ninetyDegrees[3].ToString() + ninetyDegrees[4].ToString() + ninetyDegrees[5].ToString()).Equals(winCondition) ||
+                    (ninetyDegrees[6].ToString() + ninetyDegrees[7].ToString() + ninetyDegrees[8].ToString()).Equals(winCondition))
             {
                 title = "The Winner is " + turn + "!";
                 whoGoesNext = "Great Game!";
@@ -246,7 +247,23 @@ namespace TLC_WebApp.Models
             //this selects the index of the decision array and feeds it to the string array here getting a string value and the location
             decision(aIDecisionArray[Array.IndexOf(gb.aiDecisionBoard,max)]);
         }
-    }
+
+        public async void UpDateAI(ApplicationDbContext context, List<GameBoard> gameBoards)
+        {
+            foreach (GameBoard gameBoard in gameBoards)
+            {
+                foreach(Turn turn in turnTracker)
+                {
+                    if(turn.ID == gameBoard.ID)
+                    {
+                        gameBoard.UpdateAI(turn.position, learningRate);
+                        context.GameBoard.Update(gameBoard);
+                        await context.SaveChangesAsync();//needed coding stuff
+                    }
+                }
+            }
+        }
+    }//class
     //this was code to select a position at random, keeping it here until i can get the AI to work
     //do
     //{
@@ -254,4 +271,4 @@ namespace TLC_WebApp.Models
     //} while (gb.dBGameBoard[index].Equals(x)|| gb.dBGameBoard[index].Equals(o));
     //decision(aIDecisionArray[index]);
     //gb.dBGameBoard[index] = turn;
-}
+}//namespace
