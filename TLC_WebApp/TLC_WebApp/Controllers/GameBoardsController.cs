@@ -257,7 +257,10 @@ namespace TLC_WebApp.Controllers
 
                         if (!gameBoards.Exists(p => p.Equals(game.gb)))
                         {
-                            addToDatabase();
+                            //addToDatabase();
+                            game.gb.SendToDatabase();//here i will make all "-"'s = 0's so the math can begin
+                            _context.Add(game.gb);//i'll add the game to the database here
+                            await _context.SaveChangesAsync();//needed coding stuff
                             GetDataBaseData();
                         }
                         game.gb = gameBoards.Find(p => p.Equals(game.gb));
@@ -278,7 +281,7 @@ namespace TLC_WebApp.Controllers
                         {
                             gameBoard.UpdateAI(turn.position, game.learningRate);
                             _context.GameBoard.Update(gameBoard);
-                            await _context.SaveChangesAsync();//needed coding stuff
+                            _context.SaveChanges();//needed coding stuff
                         }
                     }
                 }

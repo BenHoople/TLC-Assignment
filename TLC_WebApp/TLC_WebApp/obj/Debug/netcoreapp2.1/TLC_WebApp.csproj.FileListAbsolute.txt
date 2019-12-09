@@ -5,7 +5,6 @@ C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\bin\Debug\netcoreapp2.1\TLC_WebApp.pdb
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\bin\Debug\netcoreapp2.1\TLC_WebApp.Views.dll
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\bin\Debug\netcoreapp2.1\TLC_WebApp.Views.pdb
-C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\TLC_WebApp.csprojAssemblyReference.cache
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\TLC_WebApp.RazorAssemblyInfo.cache
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\TLC_WebApp.RazorAssemblyInfo.cs
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
