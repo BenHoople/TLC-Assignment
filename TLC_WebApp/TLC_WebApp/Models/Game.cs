@@ -264,7 +264,8 @@ namespace TLC_WebApp.Models
             }
         }
     }//class
-    //this was code to select a position at random, keeping it here until i can get the AI to work
+    //this was code to select a position at random,
+    //im keeping it here because i might have to use it to train the AI
     //do
     //{
     //    index = random.Next(9);
