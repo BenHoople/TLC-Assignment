@@ -54,13 +54,13 @@ namespace TLC_WebApp.Models
             string diagonalTwo = gameBoard[2].ToString() + gameBoard[4].ToString() + gameBoard[6].ToString();
 
             if((gameBoard[0]+gameBoard[1]+gameBoard[2]).Equals(winCondition)||
-                (gameBoard[3] + gameBoard[4] + gameBoard[5]).Equals(winCondition)||
+                    (gameBoard[3] + gameBoard[4] + gameBoard[5]).Equals(winCondition)||
                     (gameBoard[6] + gameBoard[7] + gameBoard[8]).Equals(winCondition)||
                     diagonalOne.Contains(winCondition) ||
                     diagonalTwo.Contains(winCondition) ||
-                    (ninetyDegrees[0].ToString() + ninetyDegrees[1].ToString() + ninetyDegrees[2].ToString()).Equals(winCondition) ||
-                    (ninetyDegrees[3].ToString() + ninetyDegrees[4].ToString() + ninetyDegrees[5].ToString()).Equals(winCondition) ||
-                    (ninetyDegrees[6].ToString() + ninetyDegrees[7].ToString() + ninetyDegrees[8].ToString()).Equals(winCondition))
+                    (gameBoard[0] + gameBoard[3] + gameBoard[6]).Equals(winCondition) ||
+                    (gameBoard[1] + gameBoard[4] + gameBoard[7]).Equals(winCondition) ||
+                    (gameBoard[2] + gameBoard[5] + gameBoard[8]).Equals(winCondition))
             {
                 title = "The Winner is " + turn + "!";
                 whoGoesNext = "Great Game!";
@@ -106,10 +106,6 @@ namespace TLC_WebApp.Models
             whoGoesNext = "It's " + turn + "'s to Move!";
         }
         //not sure if i'll still use this or not, it was for debuggin but i may repurpose later for DB
-        public bool checkBoard(String[] DBGameBoard)
-        {
-            return gameBoard.Equals(DBGameBoard);
-        }
         //checks the square to see if its been used already
         public bool isMoveValid(String position)
         {
@@ -263,7 +259,18 @@ namespace TLC_WebApp.Models
                 }
             }
         }
-    }//class
+        public void makeRandomMove()
+        {
+            do
+            {
+                index = random.Next(9);//get a random index
+            } while (gb.dBGameBoard[index].Equals(x)|| gb.dBGameBoard[index].Equals(o));//check if it equals an X || O
+            decision(aIDecisionArray[index]);
+            gb.dBGameBoard[index] = turn;
+        }
+    }
+    
+    //class
     //this was code to select a position at random,
     //im keeping it here because i might have to use it to train the AI
     //do

@@ -156,31 +156,42 @@ namespace TLC_WebApp.Models
                 switch (position)
                 {
                     case "TopLeft":
-                        TopLeft = (int.Parse(TopLeft) + learningRate).ToString();
+                        if (!TopLeft.Equals("O"))
+                        {
+                            TopLeft = (int.Parse(TopLeft) + learningRate).ToString();
+                        }
                         break;
                     case "TopMiddle":
+                    if (!TopMiddle.Equals("O"))
                         TopMiddle = (int.Parse(TopMiddle) + learningRate).ToString();
                         break;
                     case "TopRight":
-                        TopRight = (int.Parse(TopRight) + learningRate).ToString();
+                    if (!TopRight.Equals("O"))
+                            TopRight = (int.Parse(TopRight) + learningRate).ToString();
                         break;
                     case "MiddleLeft":
-                        MiddleLeft = (int.Parse(MiddleLeft) + learningRate).ToString();
+                        if (!MiddleLeft.Equals("O"))
+                            MiddleLeft = (int.Parse(MiddleLeft) + learningRate).ToString();
                         break;
                     case "MiddleMiddle":
-                        MiddleMiddle = (int.Parse(MiddleMiddle) + learningRate).ToString();
+                        if (!MiddleMiddle.Equals("O"))
+                            MiddleMiddle = (int.Parse(MiddleMiddle) + learningRate).ToString();
                         break;
                     case "MiddleRight":
-                       MiddleRight = (int.Parse(MiddleRight) + learningRate).ToString();
+                       if (!MiddleRight.Equals("O"))
+                           MiddleRight = (int.Parse(MiddleRight) + learningRate).ToString();
                        break;
                     case "BottomLeft":
-                       BottomLeft = (int.Parse(BottomLeft) + learningRate).ToString();
+                       if (!BottomLeft.Equals("O"))
+                           BottomLeft = (int.Parse(BottomLeft) + learningRate).ToString();
                        break;
                     case "BottomMiddle":
-                        BottomMiddle = (int.Parse(BottomMiddle) + learningRate).ToString();
+                        if (!BottomMiddle.Equals("O"))
+                            BottomMiddle = (int.Parse(BottomMiddle) + learningRate).ToString();
                         break;
                     case "BottomRight":
-                        BottomRight= (int.Parse(BottomRight) + learningRate).ToString();
+                        if (!BottomRight.Equals("O"))
+                            BottomRight = (int.Parse(BottomRight) + learningRate).ToString();
                         break;
                     default:
                         break;
