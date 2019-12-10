@@ -84,12 +84,15 @@ namespace TLC_WebApp.Controllers
                         }
                     }
                 }
+
             }
             game.gb.ResetGameBoard();
             return RedirectToAction(nameof(Index));
         }
 
-        private void addToDatabase()
+
+        private async void addToDatabase()
+	    Game
         {
             game.gb.SendToDatabase();//here i will make all "-"'s = 0's so the math can begin
             _context.Add(game.gb);//i'll add the game to the database here
@@ -240,7 +243,6 @@ namespace TLC_WebApp.Controllers
                     if (game.playable)
                     {
                         game.makeRandomMove();
-
                         if (!gameBoards.Any(p => p.Equals(game.gb)))
                         {
                             //addToDatabase();

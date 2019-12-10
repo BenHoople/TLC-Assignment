@@ -2,10 +2,12 @@
 
 
 
-<h2>Index</h2>
+<h2>
+    @TLC_WebApp.Controllers.GameBoardsController.game.title
+</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="NewGame">New Game</a>
 </p>
 
 <div class="container">
@@ -47,3 +49,10 @@
         </div>
     </form>
 </div>
+<h3>@TLC_WebApp.Controllers.GameBoardsController.game.whoGoesNext</h3>
+
+<form asp-action="TeachTheAI">
+    <button class="btn col">
+        Teach The AI!!!
+    </button>
+</form>
