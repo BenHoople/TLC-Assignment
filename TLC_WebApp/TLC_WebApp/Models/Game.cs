@@ -62,22 +62,29 @@ namespace TLC_WebApp.Models
                     (gameBoard[1] + gameBoard[4] + gameBoard[7]).Equals(winCondition) ||
                     (gameBoard[2] + gameBoard[5] + gameBoard[8]).Equals(winCondition))
             {
-                title = "The Winner is " + turn + "!";
-                whoGoesNext = "Great Game!";
+                whoGoesNext = "The Winner is " + turn + "! Try Again!";
                 playable = false;
                 Learn(turn);
                 return true;
             }
-            //got this code from here: https://stackoverflow.com/questions/18251875/in-c-how-to-check-whether-a-string-contains-an-integer
-            //this is much nicer looking than trying to implement REGEX which looked awful and im unfamiliar with it.
-            //if (!ninetyDegrees.Any(c => char.IsDigit(c))||!ninetyDegrees.Contains(fill))
-            //{
-            //    title = "Cats Game!";
-            //    whoGoesNext = "Try Again!";
-            //    playable = false;
-            //    return true;
-            //}
+            //checking to see if all spaces are taken by an X or an O
+            if (CatsGame())
+            {
+                whoGoesNext = "Cats Game! Try Again!";
+                playable = false;
+                return true;
+            }
             return false;
+        }
+
+        private bool CatsGame()
+        {
+            int numberOfTurns = 0;
+            foreach(string letter in gameBoard)
+            {
+                if (letter.Equals(x)|| letter.Equals(o)) numberOfTurns += 1;
+            }
+            return numberOfTurns == 9;
         }
 
         private void Learn(string turn)
@@ -267,14 +274,6 @@ namespace TLC_WebApp.Models
             } while (gb.dBGameBoard[index].Equals(x)|| gb.dBGameBoard[index].Equals(o));//check if it equals an X || O
             decision(aIDecisionArray[index]);
             gb.dBGameBoard[index] = turn;
-        }
-        public bool isMoveValid(String position)
-        {
-            if (position.Equals(x) || position.Equals(o))
-            {
-                return false;
-            }
-            else return true;
         }
     }
     

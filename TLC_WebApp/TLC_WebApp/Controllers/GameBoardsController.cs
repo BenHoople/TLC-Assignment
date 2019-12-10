@@ -91,8 +91,7 @@ namespace TLC_WebApp.Controllers
         }
 
 
-        private async void addToDatabase()
-	    Game
+        private void addToDatabase()
         {
             game.gb.SendToDatabase();//here i will make all "-"'s = 0's so the math can begin
             _context.Add(game.gb);//i'll add the game to the database here
