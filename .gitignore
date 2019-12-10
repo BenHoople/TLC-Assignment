@@ -338,3 +338,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+*.ide-shm
+*.ide-wal
+TLC_WebApp/.vs/TLC_WebApp/v15/.suo
+*.pdb
