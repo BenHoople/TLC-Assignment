@@ -4281,6 +4281,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;
+  color: black;
 }
 .navbar-brand > img {
   display: block;
@@ -4593,22 +4594,22 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
+  color: #000;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #fff;
+  color: #000;
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
   color: #9d9d9d;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: #959BA4;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #fff;
+  color: #000;
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,
@@ -6753,5 +6754,11 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+
+.navbar {
+    background-color: white;
+    border: none;
+    box-shadow: 0 5px 6px #F5F5F6;
 }
 /*# sourceMappingURL=bootstrap.css.map */

@@ -30,7 +30,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">History</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">Rules</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="GameBoards" asp-action="Index">Game</a></li>
@@ -45,10 +45,11 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+    </div>
         <footer>
             <p>&copy; 2019 - TLC_WebApp</p>
         </footer>
-    </div>
+    
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
