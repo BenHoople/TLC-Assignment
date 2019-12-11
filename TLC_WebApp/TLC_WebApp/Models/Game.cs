@@ -276,14 +276,4 @@ namespace TLC_WebApp.Models
             gb.dBGameBoard[index] = turn;
         }
     }
-    
-    //class
-    //this was code to select a position at random,
-    //im keeping it here because i might have to use it to train the AI
-    //do
-    //{
-    //    index = random.Next(9);
-    //} while (gb.dBGameBoard[index].Equals(x)|| gb.dBGameBoard[index].Equals(o));
-    //decision(aIDecisionArray[index]);
-    //gb.dBGameBoard[index] = turn;
 }//namespace

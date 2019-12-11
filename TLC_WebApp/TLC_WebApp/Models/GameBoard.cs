@@ -129,7 +129,6 @@ namespace TLC_WebApp.Models
         //for making the gameboards == eachother regardless of numerical values
         public void NeutralizeGameBoard()
         {
-            ID = 0;
             for (int i = 0; i < dBGameBoard.Length; i++)
             {
                 if (!dBGameBoard[i].Equals("X") && !dBGameBoard[i].Equals("O") && !dBGameBoard[i].Equals("-"))
@@ -151,7 +150,6 @@ namespace TLC_WebApp.Models
                 aiDecisionBoard[i] = int.Parse(dBGameBoard[i]);
             }
         }
-
         public void UpdateAI(string position, int learningRate)
         {
                 switch (position)

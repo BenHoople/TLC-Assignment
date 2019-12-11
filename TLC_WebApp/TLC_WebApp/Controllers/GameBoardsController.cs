@@ -87,7 +87,7 @@ namespace TLC_WebApp.Controllers
 
             }
             game.gb.ResetGameBoard();
-            return RedirectToAction(nameof(Index));
+            return View(nameof(Index));
         }
 
 
@@ -275,5 +275,7 @@ namespace TLC_WebApp.Controllers
                 game = new Game();
             }//repeat
         }
+
+        
     }
 }
