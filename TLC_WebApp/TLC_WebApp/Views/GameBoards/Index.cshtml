@@ -1,6 +1,6 @@
 ﻿@model TLC_WebApp.Models.Game
 
-
+<link rel="stylesheet" href="~/css/GameDesign.css" type="text/css" />
 
 <h2>
     @TLC_WebApp.Controllers.GameBoardsController.game.title
@@ -10,19 +10,17 @@
     <a asp-action="NewGame">New Game</a>
 </p>
 
-
-
-<div class="container" id="gameBoard">
+<div class="game-design" id="gameBoard">
     <form id="form" asp-action="Clicked">
         <!--Put GameBoard here:      -->
      </form>
 </div>
 
+<h3>@TLC_WebApp.Controllers.GameBoardsController.game.whoGoesNext</h3>
 
-    <h3>@TLC_WebApp.Controllers.GameBoardsController.game.whoGoesNext</h3>
+<form asp-action="TeachTheAI">
+    <button class="btn col">
+        Teach The AI!!!
+    </button>
+</form>
 
-    <form asp-action="TeachTheAI">
-        <button class="btn col">
-            Teach The AI!!!
-        </button>
-    </form>

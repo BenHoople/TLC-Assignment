@@ -1,0 +1,88 @@
+﻿html, body {
+    font-family: Calibri;
+    font-size: 21px;
+ 
+    background: white;
+    
+}
+.check-data {
+    position: page;
+    margin-top: 20px;
+    margin-left: 510px;
+    color: white;
+    height: 40px;
+    width: 120px;
+    border-radius: 12px;
+    background-color: salmon;
+    border: none;
+    font-family: Verdana, serif;
+    font-weight: 900;
+    font-size: 16px;
+}
+.game-design {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7%;
+    margin-bottom: auto;
+    width: 400px;
+    height: 300px;
+    
+}
+.form-group .btn {
+    position: relative;
+    padding: 40px 60px 40px 60px;
+    font-size: 12px;
+    background: none;
+    transition-property: box-shadow;
+    transition-duration: 0.5s;
+    transition-property: background-color;
+    border: 1px solid salmon;
+ 
+}
+
+.btn:focus {
+background-color: #E3EEFE;
+}
+
+.btn:hover {
+-webkit-box-shadow: inset -1px -1px 18px 0px rgba(0,0,30,0.210);
+-moz-box-shadow: inset -1px -1px 18px 0px rgba(0,0,30,0.210);
+box-shadow: inset -1px -1px 18px 0px rgba(0,0,30,0.210);
+}
+
+.form-group {
+    margin-top: -40px;
+    
+    position: relative;
+
+}
+.bottom-line {
+     border: none;
+}
+h2,p,h3 {
+    text-align:center;
+}
+
+h2 {
+    font-size: 50px;
+    margin: 20px;
+    margin-top: 50px;
+
+}
+
+.navbar {
+    background-color: white;
+    border: none;
+    box-shadow: 0 5px 6px #F5F5F6;
+  
+    
+}
+
+a {
+background-color: white;
+color: black;
+
+}
