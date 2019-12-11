@@ -6,7 +6,7 @@
     
 }
 .check-data {
-    position:page;
+    position: page;
     margin-top: 20px;
     margin-left: 510px;
     color: white;
@@ -20,28 +20,27 @@
     font-size: 16px;
 }
 .game-design {
-   
     position: relative;
-    margin: 0 auto;
-    margin-left: 450px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 40%;
-    padding: 10px;
-    left: -110px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7%;
+    margin-bottom: auto;
+    width: 400px;
+    height: 300px;
+    
 }
-.btn {
-    position: inherit;
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    font-size: 60px;
+.form-group .btn {
+    position: relative;
+    padding: 40px 60px 40px 60px;
+    font-size: 12px;
     background: none;
     transition-property: box-shadow;
     transition-duration: 0.5s;
     transition-property: background-color;
-
+    border: 1px solid salmon;
+ 
 }
 
 .btn:focus {
@@ -56,7 +55,7 @@ box-shadow: inset -1px -1px 18px 0px rgba(0,0,30,0.210);
 
 .form-group {
     margin-top: -40px;
-
+    
     position: relative;
 
 }
@@ -83,7 +82,7 @@ h2 {
 }
 
 a {
-background-color: ;
+background-color: white;
 color: black;
 
 }
