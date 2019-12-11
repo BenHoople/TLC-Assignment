@@ -150,7 +150,6 @@ namespace TLC_WebApp.Models
                 aiDecisionBoard[i] = int.Parse(dBGameBoard[i]);
             }
         }
-
         public void UpdateAI(string position, int learningRate)
         {
                 switch (position)
