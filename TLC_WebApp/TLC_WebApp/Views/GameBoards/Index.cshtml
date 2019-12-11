@@ -5,7 +5,9 @@
 <h2>
     @TLC_WebApp.Controllers.GameBoardsController.game.title
 </h2>
-
+<br />
+<h3>@TLC_WebApp.Controllers.GameBoardsController.game.whoGoesNext</h3>
+<br />
 <p>
     <a asp-action="NewGame">New Game</a>
 </p>
@@ -14,10 +16,9 @@
 <div class="game-design" id="gameBoard">
     <form id="form" asp-action="Clicked">
         <!--Put GameBoard here:      -->
-     </form>
+    </form>
 </div>
 
-<h3>@TLC_WebApp.Controllers.GameBoardsController.game.whoGoesNext</h3>
 
 <form asp-action="TeachTheAI">
     <button class="btn col">

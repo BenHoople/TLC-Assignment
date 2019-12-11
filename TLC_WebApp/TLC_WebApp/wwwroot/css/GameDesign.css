@@ -32,16 +32,16 @@
     
 }
 .form-group .btn {
+    width: 4em;
     position: relative;
     padding: 40px 60px 40px 60px;
-    font-size: 12px;
+    font-size: 24px;
+    font-weight: bolder;
     background: none;
     transition-property: box-shadow;
     transition-duration: 0.5s;
     transition-property: background-color;
-    
-    
- 
+    text-align: center;
 }
 
 .btn:focus {
