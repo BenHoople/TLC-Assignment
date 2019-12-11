@@ -1,0 +1,58 @@
+﻿@model TLC_WebApp.Models.Game
+
+
+
+<h2>
+    @TLC_WebApp.Controllers.GameBoardsController.game.title
+</h2>
+
+<p>
+    <a asp-action="NewGame">New Game</a>
+</p>
+
+<div class="container">
+    <form asp-action="Clicked">
+        <div class="form-group">
+            <button value="TopLeft" name="position" class="btn">
+                @TLC_WebApp.Controllers.GameBoardsController.game.gb.TopLeft
+            </button>
+            <button value="TopMiddle" name="position" class="btn">
+                @TLC_WebApp.Controllers.GameBoardsController.game.gb.TopMiddle
+            </button>
+            <button value="TopRight" name="position" class="btn">
+                @TLC_WebApp.Controllers.GameBoardsController.game.gb.TopRight
+            </button>
+        </div>
+    <br />
+        <div class="form-group">
+            <button value="MiddleLeft" name="position" class="btn">
+                @TLC_WebApp.Controllers.GameBoardsController.game.gb.MiddleLeft
+            </button>
+            <button value="MiddleMiddle" name="position" class="btn">
+                @TLC_WebApp.Controllers.GameBoardsController.game.gb.MiddleMiddle
+            </button>
+            <button value="MiddleRight" name="position" class="btn">
+                @TLC_WebApp.Controllers.GameBoardsController.game.gb.MiddleRight
+            </button>
+        </div>
+        <br />
+        <div class="form-group">
+            <button value="BottomLeft" name="position" class="btn col">
+                @TLC_WebApp.Controllers.GameBoardsController.game.gb.BottomLeft
+            </button>
+            <button value="BottomMiddle" name="position" class="btn col">
+                @TLC_WebApp.Controllers.GameBoardsController.game.gb.BottomMiddle
+            </button>
+            <button value="BottomRight" name="position" class="btn col">
+                @TLC_WebApp.Controllers.GameBoardsController.game.gb.BottomRight
+            </button>
+        </div>
+    </form>
+</div>
+<h3>@TLC_WebApp.Controllers.GameBoardsController.game.whoGoesNext</h3>
+
+<form asp-action="TeachTheAI">
+    <button class="btn col">
+        Teach The AI!!!
+    </button>
+</form>

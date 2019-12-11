@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.106
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TLC_WebApp", "TLC_WebApp\TLC_WebApp.csproj", "{BEC59230-D4C0-491B-88F0-058EB7803E75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{40BE6060-604F-40CE-90A8-AE8B0ED1C1F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEC59230-D4C0-491B-88F0-058EB7803E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC59230-D4C0-491B-88F0-058EB7803E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC59230-D4C0-491B-88F0-058EB7803E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC59230-D4C0-491B-88F0-058EB7803E75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40BE6060-604F-40CE-90A8-AE8B0ED1C1F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40BE6060-604F-40CE-90A8-AE8B0ED1C1F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40BE6060-604F-40CE-90A8-AE8B0ED1C1F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40BE6060-604F-40CE-90A8-AE8B0ED1C1F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0B172BC-B5BD-4AC3-9722-CAE3E7232D0A}
+	EndGlobalSection
+EndGlobal
