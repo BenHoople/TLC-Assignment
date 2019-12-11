@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,6 +10,7 @@ using TLC_WebApp.Data;
 
 namespace TLC_WebApp.Models
 {
+    [Authorize]
     public class GameBoard
     {
         public virtual int ID { get; set; }

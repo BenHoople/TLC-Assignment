@@ -85,3 +85,4 @@ C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Inspiron 15 5000\Desktop\Assignments\ASP.NET\TLC-Assignment\TLC_WebApp\TLC_WebApp\obj\Debug\netcoreapp2.1\Razor\Views\Teaching\Index.cshtml.g.cs

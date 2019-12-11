@@ -115,112 +115,6 @@ namespace TLC_WebApp.Controllers
 
             return View(gameBoard);
         }
-        /*
-        // GET: GameBoards/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-        */
-        /*
-        // POST: GameBoards/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,TopLeft,TopMiddle,TopRight,MiddleLeft,MiddleMiddle,MiddleRight,BottomLeft,BottomMiddle,BottomRight")] GameBoard gameBoard)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(gameBoard);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(gameBoard);
-        }
-       */
-        //delete and edit code incase its needed
-        /*
-        // GET: GameBoards/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var gameBoard = await _context.GameBoard.FindAsync(id);
-            if (gameBoard == null)
-            {
-                return NotFound();
-            }
-            return View(gameBoard);
-        }
-
-        // POST: GameBoards/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,TopLeft,TopMiddle,TopRight,MiddleLeft,MiddleMiddle,MiddleRight,BottomLeft,BottomMiddle,BottomRight")] GameBoard gameBoard)
-        {
-            if (id != gameBoard.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(gameBoard);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!GameBoardExists(gameBoard.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(gameBoard);
-        }
-
-        // GET: GameBoards/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var gameBoard = await _context.GameBoard
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (gameBoard == null)
-            {
-                return NotFound();
-            }
-
-            return View(gameBoard);
-        }
-
-        // POST: GameBoards/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var gameBoard = await _context.GameBoard.FindAsync(id);
-            _context.GameBoard.Remove(gameBoard);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-        */
 
 
         private bool GameBoardExists(int id)
@@ -228,54 +122,10 @@ namespace TLC_WebApp.Controllers
             return _context.GameBoard.Any(e => e.ID == id);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async void TeachTheAI() 
-        {
-            int number = 100;
-            //for x number of times, Play the Game
-            for (int i = 0; i <= number; i++)
-            {
-                for (int x = 0; game.playable && x < 5; x++)
-                {
-                    //make random decision
-                    if (game.playable)
-                    {
-                        game.makeRandomMove();
-                        if (!gameBoards.Any(p => p.Equals(game.gb)))
-                        {
-                            //addToDatabase();
-                            game.gb.SendToDatabase();//here i will make all "-"'s = 0's so the math can begin
-                            _context.Add(game.gb);//i'll add the game to the database here
-                            _context.SaveChanges();//needed coding stuff
-                            GetDataBaseData();
-                        }
-                        game.gb = gameBoards.Find(p => p.Equals(game.gb));
-                    }
-                    //AI choice (educated decision)
-                    if (game.playable)
-                    game.AIChoice();
-
-
-                    game.gb.ResetGameBoard();
-                }
-                //learn
-                foreach (GameBoard gameBoard in gameBoards)
-                {
-                    foreach (Turn turn in game.turnTracker)
-                    {
-                        if (turn.ID == gameBoard.ID)
-                        {
-                            gameBoard.UpdateAI(turn.position, game.learningRate);
-                            _context.GameBoard.Update(gameBoard);
-                            _context.SaveChanges();//needed coding stuff
-                        }
-                    }
-                }
-                game = new Game();
-            }//repeat
+        public async Task<IActionResult> TeachTheAI() {
+            TeachingController teach = new TeachingController(_context);
+            teach.TeachTheAI(game);
+            return View(nameof(Index));
         }
-
-        
     }
 }
