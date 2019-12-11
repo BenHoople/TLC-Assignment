@@ -48,7 +48,14 @@ namespace TLC_WebApp.Controllers
             return View(game);
         }
         //verify position of clicked button.
-        public async Task<IActionResult> Clicked(String position)
+        public async void Clicked(String position)
+
+
+
+
+
+
+
         {
             //player choice
             if (game.playable)//make sure game is playable
@@ -87,7 +94,6 @@ namespace TLC_WebApp.Controllers
 
             }
             game.gb.ResetGameBoard();
-            return RedirectToAction(nameof(Index));
         }
 
 
@@ -275,5 +281,7 @@ namespace TLC_WebApp.Controllers
                 game = new Game();
             }//repeat
         }
+
+        
     }
 }

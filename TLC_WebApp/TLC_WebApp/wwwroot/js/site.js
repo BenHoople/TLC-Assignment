@@ -3,5 +3,12 @@
 
 // Write your JavaScript code.
 
-$("#gameBoard").load("/ajax/GameBoardPartial");
+$("#form").load("/ajax/GameBoardPartial");
+$("#square").click(function () {
+    $(this).innerHTML("BLAH!")
+    });
+
+//$(function () {
+  //  $("#form").click($(this).load("/ajax/GameBoardPartial"))
+//});
 
